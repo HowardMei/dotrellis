@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+pause(){
+ read -n1 -rsp $'Press any key to continue or Ctrl+C to exit...\n'
+}
+echo "----->Updating upstrellis according to upstream trellis ..."
+git checkout uptrellis
+[ -f ./update ] && ./update
+pause
+echo "----->Rebasing devtrellis upon uptrellis ..."
+git checkout devtrellis
+[ -f ./mvtrellis ] && ./mvtrellis
+pause
+echo "----->Updating upbedrock according to upstream bedrock ..."
+git checkout upbedrock
+[ -f ./update ] && ./update
+pause
+echo "----->Rebasing devbedrock upon upbedrock ..."
+git checkout devbedrock
+[ -f ./mvbedrock ] && ./mvbedrock
+pause
+echo "----->Merging devtrellis and devbedrock into devproj ..."
+git checkout devproj
+[ -f ./updatedev ] && ./updatedev
+pause
+echo "----->Rebasing project upon devproj ..."
+git checkout project
+[ -f ./updateproj ] && ./updateproj
+pause
+echo "----->Rebasing master upon project ..."
+git checkout master
+git rebase -Xtheirs project
