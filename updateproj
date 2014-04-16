@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+echo "----->Make sure project is checked out ..."
+git checkout project
+echo "----->Rebasing project upon devproj ..."
+git rebase -Xtheirs devproj
