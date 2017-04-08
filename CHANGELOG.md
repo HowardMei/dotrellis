@@ -1,4 +1,5 @@
 ### HEAD
+* Add ansible_local support for non-Windows ([#824](https://github.com/roots/trellis/pull/824))
 * Ansible 2.3 compatibility ([#813](https://github.com/roots/trellis/pull/813))
 * Remove potentially dangerous `db_import` option ([#825](https://github.com/roots/trellis/pull/825))
 
