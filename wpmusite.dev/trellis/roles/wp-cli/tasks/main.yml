@@ -23,3 +23,9 @@
     warn: false
   register: wp_cli_completion
   changed_when: wp_cli_completion.stdout == 'wp-completion-' + wp_cli_version + '.bash'
+
+- name: Install wp-cli-dotenv-command
+  command: wp package install aaemnnosttv/wp-cli-dotenv-command --allow-root
+  when: wp_cli|changed
+  register: wp_cli_dotenv_command
+  changed_when: wp_cli_dotenv_command.rc == 0

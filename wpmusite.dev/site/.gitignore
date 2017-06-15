@@ -1,14 +1,24 @@
 # Application
+web/app/langs/*
+!web/app/langs/.gitkeep
+web/app/themes/*
+!web/app/themes/.gitkeep
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
+web/app/always/*/
+!web/app/always/.gitkeep
 web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
+web/usrfs/uploads/*
+!web/usrfs/uploads/.gitkeep
 
 # WordPress
 web/wp
-web/.htaccess
+web/core/*
+!web/core/.gitkeep
+!web/.htaccess
 
 # Dotenv
 .env

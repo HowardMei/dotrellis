@@ -16,6 +16,13 @@
   register: env_file
   changed_when: env_file.stdout == item.key + '.env'
 
+- name: Generate the wp security keys
+  command: wp dotenv salts regenerate --allow-root
+  args:
+    chdir: "{{ www_root }}/{{ item.key }}/{{ item.value.current_path | default('current') }}/"
+  when: wp_cli_dotenv_command|changed
+  with_dict: "{{ wordpress_sites }}"
+
 - name: Add known_hosts
   known_hosts:
     name: "{{ item.name }}"

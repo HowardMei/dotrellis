@@ -4,6 +4,51 @@
  * This file is required in the root directory so WordPress can find it.
  * WP is hardcoded to look in its own directory or one directory up for wp-config.php.
  */
-require_once(dirname(__DIR__) . '/vendor/autoload.php');
-require_once(dirname(__DIR__) . '/config/application.php');
+
+// Define global PATH constants here manually
+define('_ROOT_DIR_', dirname(__DIR__));
+define('_WEBROOT_DIR_', __DIR__);
+// Load custom pre-bootstrap modifications
+require_once(_ROOT_DIR_ . '/mods/preconf.php');
+
+
+/**
+ * Default Content Directory
+ */
+define('WP_CORE_DIR', _WEBROOT_DIR_ . '/core');
+define('WP_USERFS_DIR', _WEBROOT_DIR_ . '/usrfs');
+define('WP_CONTENT_DIR', _WEBROOT_DIR_ . '/app');
+
+define('WPMU_PLUGIN_DIR', WP_CONTENT_DIR . '/always');
+define('WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins');
+define('WP_LANG_DIR', WP_CONTENT_DIR . '/langs');
+define('WP_UPLOAD_DIR', (defined('WP_USERFS_DIR') ? WP_USERFS_DIR : WP_CONTENT_DIR) . '/uploads');
+
+/**
+ * Define WordPress Abspath
+ */
+if (!defined('ABSPATH')) {
+    define('ABSPATH', WP_CORE_DIR . '/');
+}
+
+// Load vendor modules
+require_once(_ROOT_DIR_ . '/vendor/autoload.php');
+// Load wp application configs where the .env is loaded.
+require_once(_ROOT_DIR_ . '/config/application.php');
+
+/**
+ * Default URL Address
+ */
+!defined('WP_HOME') && exit('WP_HOME is NOT defined');
+define('WP_CONTENT_URL', WP_HOME . '/app');
+define('WPMU_PLUGIN_URL', WP_CONTENT_URL . '/always');
+define('WP_PLUGIN_URL', WP_CONTENT_URL . '/plugins');
+
+
+// Load custom post-bootstrap modifications
+require_once(_ROOT_DIR_ . '/mods/postconf.php');
+
+/**
+ * Bootstrap WordPress
+ */
 require_once(ABSPATH . 'wp-settings.php');

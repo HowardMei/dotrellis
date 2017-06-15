@@ -45,19 +45,19 @@ server {
 
   {% endif -%}
   {% endblock -%}
-  
+
   {% block multisite_rewrites -%}
   {% if item.value.multisite.enabled | default(false) -%}
   # Multisite rewrites
   {% if item.value.multisite.subdomains | default(false) -%}
-  rewrite ^/(wp-.*.php)$ /wp/$1 last;
-  rewrite ^/(wp-(content|admin|includes).*) /wp/$1 last;
+  rewrite ^/(wp-.*.php)$ /core/$1 last;
+  rewrite ^/(wp-(content|admin|includes).*) /core/$1 last;
 
   {% else -%}
   if (!-e $request_filename) {
     rewrite /wp-admin$ $scheme://$host$uri/ permanent;
-    rewrite ^(/[^/]+)?(/wp-.*) /wp$2 last;
-    rewrite ^(/[^/]+)?(/.*\.php) /wp$2 last;
+    rewrite ^(/[^/]+)?(/wp-.*) /core$2 last;
+    rewrite ^(/[^/]+)?(/.*\.php) /core$2 last;
   }
 
   {% endif -%}
