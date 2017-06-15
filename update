@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+git checkout upbedrock
+if !(git remote | grep -iq upbedrock); then
+    git remote add upbedrock https://github.com/roots/bedrock 2>/dev/null
+    git remote set-url --push upbedrock fetchonly 2>/dev/null
+fi
+git pull --force --no-edit upbedrock master
