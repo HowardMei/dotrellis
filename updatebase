@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+echo "Checking out uptream trellis ..."
+git checkout uptrellis
+[ -f ./update ] && ./update
+git checkout devtrellis
+git rebase uptrellis
+echo "Checking out uptream bedrock ..."
+git checkout upbedrock
+[ -f ./update ] && ./update
+git checkout devbedrock
+git rebase devbedrock
+echo "Checking out project devbase ..."
+git checkout devproj
+git merge devtrellis
+git merge devbedrock --allow-unrelated-histories
+echo "Checking out real project for developing ..."
+git checkout project
+git rebase devproj
