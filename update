@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-git checkout upstream
-if !(git remote | grep -iq upstream); then
-    git remote add upstream https://github.com/roots/trellis 2>/dev/null
-    git remote set-url --push upstream fetchonly 2>/dev/null
+git checkout uptrellis
+if !(git remote | grep -iq uptrellis); then
+    git remote add uptrellis https://github.com/roots/trellis 2>/dev/null
+    git remote set-url --push uptrellis fetchonly 2>/dev/null
 fi
-git pull --force upstream master
+git pull --force uptrellis master
