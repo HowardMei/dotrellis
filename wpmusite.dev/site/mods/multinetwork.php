@@ -32,6 +32,14 @@ if ( defined( 'WP_ALLOW_MULTISITE' ) && WP_ALLOW_MULTISITE === True) {
         }
         define('NOBLOGREDIRECT', WP_HOME);
     }
+
+/**
+ * There is an url issue #27287 for multisite blogs with WordPress in it's own subdirectory
+ * for use with projects such as https://github.com/roots/bedrock and
+ * https://github.com/markjaquith/WordPress-Skeleton
+ *
+ * @see https://core.trac.wordpress.org/ticket/27287
+ */
 }
 
 

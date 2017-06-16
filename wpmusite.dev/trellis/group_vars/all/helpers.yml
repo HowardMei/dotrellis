@@ -1,6 +1,6 @@
 wordpress_env_defaults:
   wp_env: "{{ env }}"
-  wp_allow_multisite: false
+  wp_allow_multisite: true
   root_domain: "{{ site_hosts_canonical | first }}"
   wp_proto: "{{ ssl_enabled | ternary('https', 'http') }}"
   wp_home: "{{ ssl_enabled | ternary('https', 'http') }}://{{ site_hosts_canonical | first }}"

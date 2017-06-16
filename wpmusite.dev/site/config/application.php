@@ -43,18 +43,38 @@ define( 'WP_CRON_LOCK_TIMEOUT', 60);
 define( 'DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: False);
 define( 'WP_MEMORY_LIMIT', env('WP_MEMORY_LIMIT') ?: '64M' );
 define( 'WP_MAX_MEMORY_LIMIT', env('WP_MAX_MEMORY_LIMIT') ?: '256M' );
-define( 'WP_DEFAULT_THEME', env('WP_DEFAULT_THEME') ?: 'twentyseventeen' );
+define( 'WP_DEFAULT_THEME', env('WP_DEFAULT_THEME') ?: '' );
 define( 'WP_ALLOW_MULTISITE', env('WP_ALLOW_MULTISITE') ?: False );
 
 /**
- * URLs
+ * Custom SLUGS for building new Dirs and URLs
+ */
+define('WP_CORE_SLUG', getenv('WP_CORE_SLUG') ?: 'core');
+define('WP_ADMIN_SLUG', getenv('WP_ADMIN_SLUG') ?: 'dash');
+define('WP_INCLUDES_SLUG', getenv('WP_INCLUDES_SLUG') ?: 'inc');
+define('WP_CONTENT_SLUG', getenv('WP_CONTENT_SLUG') ?: 'app');
+define('WP_PLUGIN_SLUG', getenv('WP_PLUGIN_SLUG') ?: 'plugins');
+define('WP_MUPLUGIN_SLUG', getenv('WP_MUPLUGIN_SLUG') ?: 'always');
+define('WP_THEME_SLUG', getenv('WP_THEME_SLUG') ?: 'themes');
+define('WP_LANG_SLUG', getenv('WP_LANG_SLUG') ?: 'langs');
+define('WP_USERFS_SLUG', getenv('WP_USERFS_SLUG') ?: 'usrfs');
+define('WP_UPLOAD_SLUG', getenv('WP_UPLOAD_SLUG') ?: 'uploads');
+define('WP_LOGIN_SLUG', getenv('WP_LOGIN_SLUG') ?: 'tologin');
+define('WP_LOGOUT_SLUG', getenv('WP_LOGOUT_SLUG') ?: 'tologout');
+define('WP_REGISTER_SLUG', getenv('WP_REGISTER_SLUG') ?: 'tosignup');
+define('WP_FORGOT_SLUG', getenv('WP_FORGOT_SLUG') ?: 'toforgot');
+
+
+/**
+ * WP_HOME settings
  */
 define('WP_PROTO', env('WP_PROTO') ?: 'http');
 // WP_HOME is the visiting path of wp index page which often is / or /blog
 define('WP_HOME', env('WP_HOME') ?: WP_PROTO . '://' . ROOT_DOMAIN);
-// WP_SITEURL must point to the relative location of wordpress installation.
-define('WP_SITEURL', WP_PROTO . '://' . ROOT_DOMAIN . '/core');
-
+define('WP_SITEURL', WP_HOME . '/' . WP_CORE_SLUG);
+define('WP_CONTENT_URL', WP_HOME . '/' . WP_CONTENT_SLUG);
+define('WPMU_PLUGIN_URL', WP_CONTENT_URL . '/' . WP_MUPLUGIN_SLUG);
+define('WP_PLUGIN_URL', WP_CONTENT_URL . '/' . WP_PLUGIN_SLUG);
 /**
  * DB settings
  */

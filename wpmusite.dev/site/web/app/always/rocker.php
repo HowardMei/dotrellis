@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Bedrock Autoloader
  * Plugin URI: https://github.com/roots/bedrock/
- * Description: An autoloader that enables standard plugins to be required just like must-use plugins. The autoloaded plugins are included during mu-plugin loading. An asterisk (*) next to the name of the plugin designates the plugins that have been autoloaded.
+ * Description: This is an autoloader that enables standard plugins to be required as must-use plugins.
  * Version: 1.0.0
  * Author: Roots
  * Author URI: https://roots.io/
@@ -21,7 +21,7 @@ if (!is_blog_installed()) {
  * @author Roots
  * @link https://roots.io/
  */
-class Autoloader
+class RockerAutoLoader
 {
     /** @var array Store Autoloader cache and site option */
     private static $cache;
@@ -54,7 +54,7 @@ class Autoloader
         }
 
         self::$_single = $this;
-        self::$relative_path = '/../' . basename(__DIR__);
+        self::$relative_path = '/../' . basename(__DIR__) . '/rocks';
 
         if (is_admin()) {
             add_filter('show_advanced_plugins', [$this, 'showInAdmin'], 0, 2);
@@ -73,7 +73,7 @@ class Autoloader
         $this->countPlugins();
 
         array_map(static function () {
-            include_once(WPMU_PLUGIN_DIR . '/' . func_get_args()[0]);
+            include_once(WPMU_PLUGIN_DIR . '/rocks/' . func_get_args()[0]);
         }, array_keys(self::$cache['plugins']));
 
         $this->pluginHooks();
@@ -163,7 +163,7 @@ class Autoloader
     private function validatePlugins()
     {
         foreach (self::$cache['plugins'] as $plugin_file => $plugin_info) {
-            if (!file_exists(WPMU_PLUGIN_DIR . '/' . $plugin_file)) {
+            if (!file_exists(WPMU_PLUGIN_DIR . '/rocks/' . $plugin_file)) {
                 $this->updateCache();
                 break;
             }
@@ -184,7 +184,7 @@ class Autoloader
             return self::$count;
         }
 
-        $count = count(glob(WPMU_PLUGIN_DIR . '/*/', GLOB_ONLYDIR | GLOB_NOSORT));
+        $count = count(glob(WPMU_PLUGIN_DIR . '/rocks/*/', GLOB_ONLYDIR | GLOB_NOSORT));
 
         if (!isset(self::$cache['count']) || $count != self::$cache['count']) {
             self::$count = $count;
@@ -195,4 +195,4 @@ class Autoloader
     }
 }
 
-new Autoloader();
+new RockerAutoLoader();
