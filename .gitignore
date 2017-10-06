@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # WordPress
 wp
 .htaccess
@@ -7,6 +8,8 @@ wp
 db-sync
 sql-dump-*.sql
 =======
+=======
+>>>>>>> upbedrock
 # Application
 web/app/plugins/*
 !web/app/plugins/.gitkeep
@@ -18,6 +21,9 @@ web/app/uploads/*
 # WordPress
 web/wp
 web/.htaccess
+<<<<<<< HEAD
+>>>>>>> upbedrock
+=======
 >>>>>>> upbedrock
 
 # Dotenv
@@ -25,6 +31,7 @@ web/.htaccess
 .env.*
 !.env.example
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 # Application
 app/uploads
@@ -43,6 +50,11 @@ node_modules
 # Vagrant
 bin
 .vagrant
+=======
+# Composer
+vendor/*
+!vendor/.gitkeep
+>>>>>>> upbedrock
 =======
 # Composer
 vendor/*
