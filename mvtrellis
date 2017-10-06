@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Moves all files in an existing repository into a new subfolder
+move_files_into_subfolder() {
+  local subfolder="$1"
+  local -a files=( $(ls -a) )
+  for file in ${files[@]}
+  do
+    if [[ "$file" != "wpmusite.dev" && "$file" != ".git" && "$file" != "mv${subfolder}" && "$file" != ".." && "$file" != "." ]]; then
+      git mv $file ./wpmusite.dev/${subfolder}
+    fi
+  done
+}
+echo "----->Ensure devtrellis is checked out..."
+git checkout devtrellis
+\rm -rf wpmusite.dev && \mkdir -p wpmusite.dev/trellis
+echo "----->Merging uptrellis into devtrellis ..."
+git merge --no-edit --squash uptrellis --allow-unrelated-histories
+move_files_into_subfolder trellis
+git add -A
+git commit -m "devtrellis: merged uptrellis code into subfolder @ $(date)"
