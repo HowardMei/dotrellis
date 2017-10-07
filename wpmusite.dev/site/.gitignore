@@ -1,0 +1,45 @@
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# WordPress
+wp/*
+core/*
+web/wp/*
+web/core/*
+!web/wp/.gitkeep
+!web/core/.gitkeep
+!web/.htaccess
+
+# WP-CLI
+db-sync
+sql-dump-*.sql
+
+# Application
+web/app/langs/*
+!web/app/langs/.gitkeep
+web/app/themes/*
+!web/app/themes/.gitkeep
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/usrfs/uploads/*
+!web/usrfs/uploads/.gitkeep
+web/usrfs/ex.sites.dir/*
+!web/usrfs/ex.sites.dir/index.php
+web/usrfs/sites.dir/*
+!web/usrfs/sites.dir/index.php
+
+# Vendor (e.g. Composer)
+vendor/*
+!vendor/.gitkeep
+
+# Node Package Manager
+node_modules
+
+# Vagrant
+bin
+.vagrant
